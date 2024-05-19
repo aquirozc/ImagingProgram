@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane id="tab_pane" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab id="tab_pane" text="Ajustes (B/N)">
+                     <content>
+                        <Accordion id="bn_tab" expandedPane="$defaultBN">
+                          <panes>
+                            <TitledPane text="Brillo" fx:id="defaultBN">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label text="Ajuste el factor de incremento" textAlignment="CENTER">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Slider id="brightness_bar" blockIncrement="2.0" max="60.0" min="-60.0">
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </Slider>
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                 </content>
+                            </TitledPane>
+                            <TitledPane text="Contraste">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <VBox maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-alignment: CENTER;" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" text="Ajuste el factor gamma" textAlignment="CENTER">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Slider id="contrast_gamma_bar" blockIncrement="0.2" max="1.5" min="0.5" value="1.0" />
+                                                <Label text="Ajuste el factor beta" textAlignment="CENTER">
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" top="11.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <Slider id="contrast_beta_bar" blockIncrement="2.0" max="20.0" min="-20.0" />
+                                             </children>
+                                          </VBox>
+                                       </center>
+                                    </BorderPane>
+                                 </content>
+                            </TitledPane>
+                            <TitledPane text="Negativo">
+                                 <content>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0">
+                                       <center>
+                                          <Button id="swap_btn" mnemonicParsing="false" text="Invertir" BorderPane.alignment="CENTER" />
+                                       </center>
+                                    </BorderPane>
+                                 </content>
+                            </TitledPane>
+                          </panes>
+                        </Accordion>
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </HBox>
+   </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(180,180,180); -fx-border-width: 0 0.5px 0 0;" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+               <center>
+                  <ImageView id="image_vw" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <Slider>
+               <VBox.margin>
+                  <Insets bottom="11.0" left="22.0" right="22.0" top="11.0" />
+               </VBox.margin>
+            </Slider>
+         </children>
+      </VBox>
+   </center>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Archivo">
+            <items>
+              <MenuItem id="openBtn" mnemonicParsing="false" text="Abrir" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>
