@@ -1,8 +1,6 @@
 package com.aquirozc.jimp.init;
 
 import com.aquirozc.jimp.controller.MainController;
-import com.aquirozc.jimp.controller.SpatialOPController;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,7 +25,7 @@ public class FXApp extends Application{
         stage.show();
 
         new MainController(stage);
-        new SpatialOPController();
+      
         
     }
 

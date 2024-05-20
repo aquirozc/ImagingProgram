@@ -3,7 +3,6 @@ package com.aquirozc.jimp.controller;
 import com.aquirozc.jimp.engine.GrayScaleOp;
 import com.aquirozc.jimp.init.FXApp;
 
-import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.control.Accordion;
@@ -93,18 +92,6 @@ public class GrayScaleOPController {
 
         controller.updateCanvas(GrayScaleOp.makeNegative(controller.getOGImage()));
         controller.applyChanges();
-
-        Thread.ofVirtual().start(() -> {
-
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e1) {
-                e1.printStackTrace();
-            }
-
-            Platform.runLater(() -> invertColors(e));
-
-        });
 
     }
 

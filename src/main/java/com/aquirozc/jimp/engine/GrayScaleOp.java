@@ -15,7 +15,7 @@ public class GrayScaleOp {
         IntStream.range(0, w).forEach(i -> {
             IntStream.range(0, h).forEach(j -> {
 
-                int brightness = (src.getPixelReader().getArgb(i, j) & 0x0000FF) + beta;
+                int brightness = (src.getPixelReader().getArgb(i, j) & 0xFF) + beta;
 
                 brightness = brightness < 0 ? 0 : (brightness > 255 ? 255 : brightness);
 

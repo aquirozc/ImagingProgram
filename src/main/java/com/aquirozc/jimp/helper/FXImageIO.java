@@ -1,6 +1,11 @@
 package com.aquirozc.jimp.helper;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
+
+import org.glavo.png.javafx.PNGJavaFXUtils;
+
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -25,5 +30,15 @@ public class FXImageIO {
         return image;
 
     }
+
+    public void saveImageToDisk(Image img) {
+		
+		File out = fChooser.showSaveDialog(owner);
+		
+		try {
+			PNGJavaFXUtils.writeImage(img, out.toPath());
+		} catch (IOException | NullPointerException e) {}
+		   	
+	}
     
 }
