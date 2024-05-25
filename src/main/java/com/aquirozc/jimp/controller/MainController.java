@@ -34,6 +34,7 @@ public class MainController {
     private GrayScaleOPController grayOPController = new GrayScaleOPController(this);
     private SpatialOPController spatialOPController = new SpatialOPController(this);
     private HistogramController histogramOPController = new HistogramController(this);
+    private ConvolveOPController convolveOPController = new ConvolveOPController(this);
 
     public MainController (Stage stage){
 
@@ -44,6 +45,8 @@ public class MainController {
 
         imgHelper = new FXImageIO(stage);
         targetVW = (ImageView) parent.lookup("#target_vw");
+
+        
 
     }
 

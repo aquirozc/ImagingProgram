@@ -5,7 +5,7 @@
 
     <groupId>com.aquirozc.jimp</groupId>
     <artifactId>Java_Imaging_Program</artifactId>
-    <version>Milestone1_Build1.2</version>
+    <version>Milestone1_Build1.3</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -53,16 +53,10 @@
 		    <version>22-ea+28</version>
 		</dependency>
        <dependency>
-            <groupId>com.github.wendykierp</groupId>
-            <artifactId>JTransforms</artifactId>
-            <version>3.1</version>
+            <groupId>net.imagej</groupId>
+            <artifactId>ij</artifactId>
+            <version>1.54i</version>
         </dependency>
-        <dependency>
-            <groupId>org.ejml</groupId>
-            <artifactId>ejml-all</artifactId>
-            <version>0.43.1</version>
-        </dependency>
-
     </dependencies>
 
     <build>
@@ -141,6 +135,8 @@
                         <list>javafx.scene.control.Tab</list>
                         <list>javafx.scene.control.TabPane</list>
                         <list>javafx.scene.control.TitledPane</list>
+                        <list>javafx.scene.chart.BarChart</list>
+                        <list>javafx.scene.chart.CategoryAxis</list>
                     </reflectionList>
                 </configuration>
             </plugin>
