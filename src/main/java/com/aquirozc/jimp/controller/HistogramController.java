@@ -6,6 +6,7 @@ import com.aquirozc.jimp.engine.GrayScaleOp;
 import com.aquirozc.jimp.engine.HistogramOp;
 import com.aquirozc.jimp.engine.HistogramOp.ResultSet;
 import com.aquirozc.jimp.init.FXApp;
+import com.aquirozc.jimp.strings.Strings;
 
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -14,11 +15,13 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Accordion;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 
@@ -42,6 +45,8 @@ public class HistogramController{
     private Button offsetBtn = (Button) offsetPane.lookup("#offset_btn");
     private BarChart<String ,Integer> offsetChart = (BarChart) offsetPane.lookup("#offset_chart");
     private TextField offsetTF = (TextField) offsetPane.lookup("#offset_tf");
+
+    private Alert boundsError = new Alert(AlertType.ERROR,Strings.OUTOFBOUNDS_ERROR);
 
     private int[] histogram;
     private MainController controller;
@@ -88,6 +93,11 @@ public class HistogramController{
             return;
         }
 
+        if(!controller.isBWImage()){
+            equalizePane.setExpanded(false);
+            return;
+        }
+
         histogram = HistogramOp.getHistogram(controller.getOGImage());
         updateEqualizeChart();
 
@@ -103,6 +113,11 @@ public class HistogramController{
             return;
         }
 
+        if(!controller.isBWImage()){
+            return;
+        }
+
+
         histogram = HistogramOp.getHistogram(controller.getOGImage());
         updateResizeChart();
 
@@ -115,6 +130,10 @@ public class HistogramController{
         }
 
         if(controller.isOGImageNull()){
+            return;
+        }
+
+        if(!controller.isBWImage()){
             return;
         }
 
@@ -148,7 +167,7 @@ public class HistogramController{
         int max =  Integer.parseInt("0".concat(rMaxTF.getText()));
 
         if (min < 0 || max > 255){
-            throw new IllegalArgumentException();
+            boundsError.showAndWait();
         }
 
         if (!(min<max)){
@@ -170,11 +189,9 @@ public class HistogramController{
             return;
         }
 
-
         String input = "0".concat(offsetTF.getText());
         input = input .matches("0-\\d*") ? input.substring(1) : input;
         int offset =  Integer.parseInt(input);
-
 
         Image res = GrayScaleOp.adjustBrightness(controller.getOGImage(), offset);
         histogram = HistogramOp.getHistogram(res);

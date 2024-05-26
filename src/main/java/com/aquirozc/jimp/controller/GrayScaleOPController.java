@@ -60,7 +60,8 @@ public class GrayScaleOPController {
         }
 
         if(!controller.isBWImage()){
-            throw new IllegalArgumentException("La siguiente operación solo es valida para imagenes en ByN");
+            newValue = oldValue;
+            return;
         }
 
         controller.updateCanvas(GrayScaleOp.adjustBrightness(controller.getOGImage(), (int) brightnessSlider.getValue()));
@@ -73,7 +74,8 @@ public class GrayScaleOPController {
         }
 
         if(!controller.isBWImage()){
-            throw new IllegalArgumentException("La siguiente operación solo es valida para imagenes en ByN");
+            newValue = oldValue;
+            return;
         }
 
         controller.updateCanvas(GrayScaleOp.adjustContrast(controller.getOGImage(), contrastGSlider.getValue(),contrastBSlider.getValue()));
@@ -87,7 +89,7 @@ public class GrayScaleOPController {
         }
 
         if(!controller.isBWImage()){
-            throw new IllegalArgumentException("La siguiente operación solo es valida para imagenes en ByN");
+            return;
         }
 
         controller.updateCanvas(GrayScaleOp.makeNegative(controller.getOGImage()));

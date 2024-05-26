@@ -4,13 +4,17 @@ package com.aquirozc.jimp.controller;
 import com.aquirozc.jimp.engine.ColorOp;
 import com.aquirozc.jimp.helper.FXImageIO;
 import com.aquirozc.jimp.init.FXApp;
+import com.aquirozc.jimp.strings.Strings;
 
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
@@ -30,11 +34,14 @@ public class MainController {
     private Image ogImage;
     private Image diskImage;
     private FXImageIO imgHelper;
+    private Alert bwPrompt = new Alert(AlertType.CONFIRMATION, Strings.BW_WARNING);
 
     private GrayScaleOPController grayOPController = new GrayScaleOPController(this);
     private SpatialOPController spatialOPController = new SpatialOPController(this);
     private HistogramController histogramOPController = new HistogramController(this);
     private ConvolveOPController convolveOPController = new ConvolveOPController(this);
+
+    private boolean isBWImage = false;
 
     public MainController (Stage stage){
 
@@ -45,8 +52,6 @@ public class MainController {
 
         imgHelper = new FXImageIO(stage);
         targetVW = (ImageView) parent.lookup("#target_vw");
-
-        
 
     }
 
@@ -100,7 +105,18 @@ public class MainController {
     }
 
     public boolean isBWImage(){
-        return true;
+
+        if(!isBWImage){
+            isBWImage = bwPrompt.showAndWait().get().equals(ButtonType.OK);
+            bwPrompt.close();
+        }
+
+        if(isBWImage){
+            updateCanvas(ColorOp.toGrayScale(ogImage));
+            applyChanges();
+        }
+
+        return isBWImage;
     }
 
     private void undoChanges(ActionEvent e){
@@ -110,7 +126,7 @@ public class MainController {
         int w = (int) diskImage.getWidth(); int h = (int) diskImage.getHeight();
 
         ogImage = new WritableImage(diskImage.getPixelReader(), w, h);
-        ogImage = ColorOp.toGrayScale(ogImage);
+        isBWImage = false;
 
         targetVW.setImage(ogImage);
         targetVW.setFitHeight(h);
