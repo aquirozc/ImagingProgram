@@ -40,6 +40,7 @@ public class MainController {
     private SpatialOPController spatialOPController = new SpatialOPController(this);
     private HistogramController histogramOPController = new HistogramController(this);
     private ConvolveOPController convolveOPController = new ConvolveOPController(this);
+    private ColorOPController colorOPController = new ColorOPController(this);
 
     private boolean isBWImage = false;
 
@@ -117,6 +118,10 @@ public class MainController {
         }
 
         return isBWImage;
+    }
+
+    public void setIsBWImage(boolean isBWImage){
+        this.isBWImage = isBWImage;
     }
 
     private void undoChanges(ActionEvent e){

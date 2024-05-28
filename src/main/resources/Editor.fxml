@@ -353,6 +353,22 @@
                   </VBox>
                </content>
             </Tab>
+            <Tab text="Color">
+               <content>
+                  <VBox id="color_tab" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+                     <children>
+                        <Button id="laplace_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Sepia calido" />
+                        <Button id="gauss_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Sepia azul" />
+                        <Button id="sharper_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Sepia rosa" />
+                        <Button id="emboss_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Pseudocolor" />
+                        <Button id="high_pass_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Escala de grises" />
+                     </children>
+                     <padding>
+                        <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </right>
