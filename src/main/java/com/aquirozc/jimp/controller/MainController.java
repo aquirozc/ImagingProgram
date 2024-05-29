@@ -28,6 +28,7 @@ public class MainController {
     private MenuItem openBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(0).getItems().get(0);
     private MenuItem saveBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(0).getItems().get(1);
     private MenuItem undoBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(1).getItems().get(0);
+    private MenuItem aboutBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(2).getItems().get(0);
     private Slider zoomBar = (Slider) parent.lookup("#zoom_bar");
     private ImageView targetVW = (ImageView) parent.lookup("#target_vw");
 
@@ -49,6 +50,7 @@ public class MainController {
         openBtn.setOnAction(this::openImageFromDisk);
         saveBtn.setOnAction(e -> imgHelper.saveImageToDisk(ogImage));
         undoBtn.setOnAction(this::undoChanges);
+        aboutBtn.setOnAction(e -> new Alert(AlertType.INFORMATION,Strings.PROGRAM_INFO).showAndWait());
         zoomBar.valueProperty().addListener(this::updateZoomLevel);
 
         imgHelper = new FXImageIO(stage);
