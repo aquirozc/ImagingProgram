@@ -42,6 +42,7 @@ public class MainController {
     private HistogramController histogramOPController = new HistogramController(this);
     private ConvolveOPController convolveOPController = new ConvolveOPController(this);
     private ColorOPController colorOPController = new ColorOPController(this);
+    private OverrideOPController overrideOPController = new OverrideOPController(this);
 
     private boolean isBWImage = false;
 
@@ -90,6 +91,7 @@ public class MainController {
         grayOPController.resetSliders();
         histogramOPController.onRefresh();
         spatialOPController.onRefresh();
+        overrideOPController.onRefresh();
 
         if(isOGImageNull()){
             return;

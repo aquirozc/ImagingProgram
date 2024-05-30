@@ -10,19 +10,24 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <center>
@@ -33,6 +38,7 @@
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
                         <ImageView id="target_vw" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <VBox id="canvas_vb" prefHeight="200.0" prefWidth="100.0" />
                      </children>
                   </StackPane>
                </content>
@@ -365,6 +371,75 @@
                      </children>
                      <padding>
                         <Insets left="15.0" right="15.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </Tab>
+            <Tab text="Reemplazar pixeles">
+               <content>
+                  <VBox id="override_tab" alignment="CENTER_LEFT" prefWidth="180.0">
+                     <children>
+                        <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Modo arrastrar">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="workmode" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Selecciona la region rectangular que sera reemplazada arrastrando el mouse por encima de la imagen" wrappingWidth="250.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Text>
+                        <RadioButton id="advmode_rb" mnemonicParsing="false" styleClass="rb" text="Modo manual" toggleGroup="$workmode">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Text>
+                        <HBox prefWidth="200.0">
+                           <children>
+                              <TextField id="x0_tf" prefHeight="33.0">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField id="y0_tf" prefHeight="33.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefWidth="200.0">
+                           <children>
+                              <TextField id="x1_tf" prefHeight="33.0">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <TextField id="y1_tf" prefHeight="33.0" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="11.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefWidth="200.0">
+                           <children>
+                              <Button id="replace_btn" mnemonicParsing="false" text="Reemplazar pixeles">
+                                 <HBox.margin>
+                                    <Insets top="11.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="44.0" right="44.0" />
                      </padding>
                   </VBox>
                </content>
