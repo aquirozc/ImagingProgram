@@ -66,6 +66,7 @@
           <Menu mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem mnemonicParsing="false" text="Dehacer" />
+                  <MenuItem id="restore_btn" mnemonicParsing="false" text="Restaurar" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Help">

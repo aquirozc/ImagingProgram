@@ -1,6 +1,7 @@
 package com.aquirozc.jimp.controller;
 
-
+import com.aquirozc.jimp.data.TimelineRecord;
+import com.aquirozc.jimp.data.TimelineStack;
 import com.aquirozc.jimp.engine.ColorOp;
 import com.aquirozc.jimp.helper.FXImageIO;
 import com.aquirozc.jimp.init.FXApp;
@@ -28,6 +29,7 @@ public class MainController {
     private MenuItem openBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(0).getItems().get(0);
     private MenuItem saveBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(0).getItems().get(1);
     private MenuItem undoBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(1).getItems().get(0);
+    private MenuItem restoreBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(1).getItems().get(1);
     private MenuItem aboutBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(2).getItems().get(0);
     private Slider zoomBar = (Slider) parent.lookup("#zoom_bar");
     private ImageView targetVW = (ImageView) parent.lookup("#target_vw");
@@ -36,6 +38,7 @@ public class MainController {
     private Image diskImage;
     private FXImageIO imgHelper;
     private Alert bwPrompt = new Alert(AlertType.CONFIRMATION, Strings.BW_WARNING);
+    private TimelineStack history = new TimelineStack(5);
 
     private GrayScaleOPController grayOPController = new GrayScaleOPController(this);
     private SpatialOPController spatialOPController = new SpatialOPController(this);
@@ -44,6 +47,7 @@ public class MainController {
     private ColorOPController colorOPController = new ColorOPController(this);
     private OverrideOPController overrideOPController = new OverrideOPController(this);
 
+    private boolean wasBWImage = false;
     private boolean isBWImage = false;
 
     public MainController (Stage stage){
@@ -51,19 +55,12 @@ public class MainController {
         openBtn.setOnAction(this::openImageFromDisk);
         saveBtn.setOnAction(e -> imgHelper.saveImageToDisk(ogImage));
         undoBtn.setOnAction(this::undoChanges);
+        restoreBtn.setOnAction(this::restoreChanges);
         aboutBtn.setOnAction(e -> new Alert(AlertType.INFORMATION,Strings.PROGRAM_INFO).showAndWait());
         zoomBar.valueProperty().addListener(this::updateZoomLevel);
 
         imgHelper = new FXImageIO(stage);
         targetVW = (ImageView) parent.lookup("#target_vw");
-
-    }
-
-    private void openImageFromDisk(ActionEvent e){
-
-
-        diskImage = imgHelper.readImage();
-        undoChanges(null);
 
     }
 
@@ -73,8 +70,10 @@ public class MainController {
             return;
         }
 
+        history.add(new TimelineRecord(diskImage, wasBWImage));
         ogImage = targetVW.getImage();
         updateZoomLevel(null, null, zoomBar.getValue());
+        wasBWImage = isBWImage;
 
     }
 
@@ -86,12 +85,21 @@ public class MainController {
         return targetVW;
     }
 
-    public void refreshCanvas(){
-
+    private void onRefresh(){
         grayOPController.resetSliders();
         histogramOPController.onRefresh();
         spatialOPController.onRefresh();
         overrideOPController.onRefresh();
+    }
+
+    private void openImageFromDisk(ActionEvent e){
+        diskImage = imgHelper.readImage();
+        restoreChanges(null);
+    }
+
+    public void refreshCanvas(){
+
+        onRefresh();
 
         if(isOGImageNull()){
             return;
@@ -114,23 +122,20 @@ public class MainController {
         if(!isBWImage){
             isBWImage = bwPrompt.showAndWait().get().equals(ButtonType.OK);
             bwPrompt.close();
-        }
-
-        if(isBWImage){
-            updateCanvas(ColorOp.toGrayScale(ogImage));
-            applyChanges();
+            if(isBWImage){
+                updateCanvas(ColorOp.toGrayScale(ogImage));
+                applyChanges();
+            }
         }
 
         return isBWImage;
     }
 
-    public void setIsBWImage(boolean isBWImage){
-        this.isBWImage = isBWImage;
-    }
-
-    private void undoChanges(ActionEvent e){
+    private void restoreChanges(ActionEvent e){
 
         if(diskImage == null){return;}
+
+        history.clear();
 
         int w = (int) diskImage.getWidth(); int h = (int) diskImage.getHeight();
 
@@ -143,6 +148,26 @@ public class MainController {
 
         zoomBar.setValue(100);
         refreshCanvas();
+
+    }
+
+    public void setIsBWImage(boolean isBWImage){
+        this.isBWImage = isBWImage;
+    }
+
+    private void undoChanges(ActionEvent e){
+        
+        if(history.isEmpty()){
+            return;
+        }
+
+        onRefresh();
+
+        TimelineRecord record = history.pop();
+        ogImage = record.img();
+        wasBWImage = record.wasBWImage();
+        isBWImage = wasBWImage;
+        updateCanvas(ogImage);
 
     }
 
