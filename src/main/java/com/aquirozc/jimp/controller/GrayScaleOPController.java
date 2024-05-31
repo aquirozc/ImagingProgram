@@ -36,6 +36,7 @@ public class GrayScaleOPController {
     public GrayScaleOPController (MainController controller){
 
         this.controller = controller;
+        brightnessPane.setExpanded(true);
 
         brightnessPane.expandedProperty().addListener(this::undoUnsavedChanges);
         brightnessYBtn.setOnMouseClicked(e -> {controller.applyChanges(); brightnessNBtn.fireEvent(e);});
