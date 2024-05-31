@@ -70,7 +70,7 @@ public class MainController {
             return;
         }
 
-        history.add(new TimelineRecord(diskImage, wasBWImage));
+        history.add(new TimelineRecord(ogImage, wasBWImage));
         ogImage = targetVW.getImage();
         updateZoomLevel(null, null, zoomBar.getValue());
         wasBWImage = isBWImage;
