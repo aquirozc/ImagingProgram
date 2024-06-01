@@ -1,16 +1,17 @@
 package com.aquirozc.jimp.data;
 
+import java.util.BitSet;
 import java.util.Map;
 import java.io.Serializable;
 
 public class HuffmanImage implements Serializable {
 
     private final Map<Integer,Integer> freq; 
-    private final String payload;
+    private final BitSet payload;
     private final int w;
     private final int h;
 
-    public HuffmanImage(Map<Integer,Integer> freq, String payload, int w, int h){
+    public HuffmanImage(Map<Integer,Integer> freq, BitSet payload, int w, int h){
 
         this.freq = freq;
         this.payload = payload;
@@ -23,7 +24,7 @@ public class HuffmanImage implements Serializable {
         return freq;
     }
 
-    public String payload() {
+    public BitSet payload() {
         return payload;
     }
 

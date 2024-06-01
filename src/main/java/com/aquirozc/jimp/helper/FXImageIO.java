@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import org.glavo.png.javafx.PNGJavaFXUtils;
 
 import com.aquirozc.jimp.data.HuffmanImage;
+import com.aquirozc.jimp.engine.ColorOp;
 import com.aquirozc.jimp.engine.HuffmanCode;
 
 import javafx.scene.image.Image;
@@ -62,7 +63,7 @@ public class FXImageIO {
 		if(out.getName().endsWith(".fck")){
 
 			try(FileOutputStream fStream = new FileOutputStream(out); ObjectOutputStream oStream = new ObjectOutputStream(fStream)){
-				oStream.writeObject(HuffmanCode.encodeImage(img));
+				oStream.writeObject(HuffmanCode.encodeImage(ColorOp.toGrayScale(img)));
 				return;
 			}catch (Exception e){
 				return;

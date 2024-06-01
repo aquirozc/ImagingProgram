@@ -3,6 +3,7 @@ package com.aquirozc.jimp.engine;
 import com.aquirozc.jimp.data.HuffmanImage;
 import com.aquirozc.jimp.data.HuffmanNode;
 
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 import java.util.Map;
@@ -20,9 +21,13 @@ public class HuffmanCode {
 
         IntStream.range(0, w).forEach(i -> {
             IntStream.range(0, h).forEach(j -> {
+
                 int brightness = img.getPixelReader().getArgb(i, j) & 0xFF;
+
                 img_gray[i][j] = brightness;
+
                 freq.put(brightness, freq.getOrDefault(brightness, 0) + 1);
+
             });
         });
 
@@ -38,14 +43,22 @@ public class HuffmanCode {
         
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
-                int brightness = img.getPixelReader().getArgb(i, j) & 0xFF;
+                int brightness = img_gray[i][j];
                 payload.append(code.get(brightness));
             }  
         }
 
         System.out.println(System.currentTimeMillis() - l);
 
-        return new HuffmanImage(freq, payload.toString(), w, h);
+
+        String binaryString = payload.toString();
+        BitSet binaryPayload = new BitSet(binaryString.length());
+
+        for (int i = 0; i < binaryString.length(); i++) {
+            binaryPayload.set(i, binaryString.charAt(i) == '1');
+        }
+
+        return new HuffmanImage(freq,binaryPayload , w, h);
 
     }
 
@@ -54,7 +67,6 @@ public class HuffmanCode {
         int aa = 0;
         HuffmanNode root = getTreeRoot(src.freq());
         HuffmanNode current = root;
-        
 
         int i = 0; int j = 0;
         int w = src.w(); int h = src.h();
@@ -62,22 +74,23 @@ public class HuffmanCode {
 
         while (true) {
 
-            char c = src.payload().charAt(aa++);
-
-            if(c == '0'){
+            if(!src.payload().get(aa++)){
                 current = current.left();
             }else{
                 current = current.right();
             }
 
             if (isLeaf(current)){
+
                 int brightness = current.value();
                 img.getPixelWriter().setArgb(i, j, (255 << 24) | (brightness << 16) | (brightness << 8) | brightness);
                 j++;
+
                 if (j == h){
                     j = 0;
                     i++;
                 }
+
                 current = root;
             }
 
