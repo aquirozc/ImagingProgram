@@ -2,9 +2,14 @@ package com.aquirozc.jimp.helper;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.glavo.png.javafx.PNGJavaFXUtils;
+
+import com.aquirozc.jimp.data.HuffmanImage;
+import com.aquirozc.jimp.engine.HuffmanCode;
 
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
@@ -23,7 +28,22 @@ public class FXImageIO {
 
         Image image = null;
 
-        try(FileInputStream stream = new FileInputStream(fChooser.showOpenDialog(owner))){
+		File file = fChooser.showOpenDialog(owner);
+
+		if (file == null){
+			return image;
+		}
+
+		if(file.getName().endsWith(".fck")){
+			try(FileInputStream fStream = new FileInputStream(file); ObjectInputStream oStream = new ObjectInputStream(fStream)){
+				return HuffmanCode.decodeImage((HuffmanImage)oStream.readObject());
+			}catch (Exception e){
+				e.printStackTrace();
+				return image;
+			}
+		}
+
+        try(FileInputStream stream = new FileInputStream(file)){
             image = new Image(stream);
         } catch (Exception e) {}
 
@@ -34,6 +54,20 @@ public class FXImageIO {
     public void saveImageToDisk(Image img) {
 		
 		File out = fChooser.showSaveDialog(owner);
+
+		if (out == null || img == null){
+			return;
+		}
+
+		if(out.getName().endsWith(".fck")){
+
+			try(FileOutputStream fStream = new FileOutputStream(out); ObjectOutputStream oStream = new ObjectOutputStream(fStream)){
+				oStream.writeObject(HuffmanCode.encodeImage(img));
+				return;
+			}catch (Exception e){
+				return;
+			}
+		}
 		
 		try {
 			PNGJavaFXUtils.writeImage(img, out.toPath());
