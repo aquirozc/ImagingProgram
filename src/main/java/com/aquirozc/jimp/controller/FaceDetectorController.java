@@ -7,6 +7,7 @@ import com.aquirozc.jimp.engine.ConvolveOp;
 import com.aquirozc.jimp.engine.FaceDetector;
 import com.aquirozc.jimp.init.FXApp;
 
+import java.util.Stack;
 import java.util.stream.IntStream;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
@@ -16,7 +17,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 
 public class FaceDetectorController {
 
@@ -24,7 +25,7 @@ public class FaceDetectorController {
 
     private TabPane tabPane = (TabPane) parent.lookup("#tab_pane");
     private Slider zoomBar = (Slider) parent.lookup("#zoom_bar");
-    private VBox canvas = (VBox) parent.lookup("#canvas_vb");
+    private StackPane canvas = (StackPane) parent.lookup("#canvas_vb");
 
     private boolean isTabActive = false;
     private double zoomFactor = 1.0;

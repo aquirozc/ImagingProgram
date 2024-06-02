@@ -38,5 +38,7 @@ public class Texts {
         Fecha de compilación = %s
                     
     """,Enviroment.MAIN_AUTHOR, Enviroment.CURRENT_VERSION, Enviroment.BUILD_DATE);
+
+    public static final String PROGRAM_TITLE = String.format("The Java Imaging Program (%s)",Enviroment.CURRENT_VERSION);
     
 }

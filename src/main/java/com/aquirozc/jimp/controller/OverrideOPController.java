@@ -17,7 +17,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 
 public class OverrideOPController {
@@ -25,7 +25,7 @@ public class OverrideOPController {
     private Parent parent = FXApp.MAIN_EDITOR;
 
     private TabPane tabPane = (TabPane) parent.lookup("#tab_pane");
-    private VBox canvas = (VBox) parent.lookup("#canvas_vb");
+    private StackPane canvas = (StackPane) parent.lookup("#canvas_vb");
     private Slider zoomBar = (Slider) parent.lookup("#zoom_bar");
     private ImageView targetVW = (ImageView) parent.lookup("#target_vw");
 

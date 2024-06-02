@@ -48,6 +48,7 @@ public class MainController {
     private ColorOPController colorOPController = new ColorOPController(this);
     private OverrideOPController overrideOPController = new OverrideOPController(this);
     private FaceDetectorController faceDetectorController = new FaceDetectorController(this);
+    private BlemishesRemoverController blemishesRemoverController = new BlemishesRemoverController(this);
 
     private boolean wasBWImage = false;
     private boolean isBWImage = false;

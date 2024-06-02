@@ -2,6 +2,7 @@ package com.aquirozc.jimp.init;
 
 import com.aquirozc.jimp.controller.MainController;
 import com.aquirozc.jimp.strings.Enviroment;
+import com.aquirozc.jimp.strings.Texts;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +23,8 @@ public class FXApp extends Application{
 
         MAIN_EDITOR = FXApp.getActivityByName("Editor.fxml");
 
-        stage.setTitle(String.format("The Java Imaging Program (%s)",Enviroment.CURRENT_VERSION));
+        System.setProperty("apple.awt.application.name", Texts.PROGRAM_TITLE);
+        stage.setTitle(Texts.PROGRAM_TITLE);
         stage.setScene(new Scene(MAIN_EDITOR));
         stage.show();
 
@@ -36,8 +38,9 @@ public class FXApp extends Application{
         Parent parent = null;
     
         try {
-            System.out.println(FXApp.class.getClassLoader().getResource(name));
             parent = new FXMLLoader(FXApp.class.getClassLoader().getResource(name)).load();
+            parent.getStylesheets().add("caspian.css");
+            parent.getStylesheets().add("caspianmod.css");
         } catch (Exception e) {
             e.printStackTrace();
         }
