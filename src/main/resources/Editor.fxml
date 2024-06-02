@@ -445,6 +445,15 @@
                   </VBox>
                </content>
             </Tab>
+            <Tab text="Detector de rostros">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <center>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione con el ratón el punto central del rostro para comenzar la detección" textAlignment="CENTER" wrappingWidth="200.0" BorderPane.alignment="CENTER" />
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
         </tabs>
       </TabPane>
    </right>

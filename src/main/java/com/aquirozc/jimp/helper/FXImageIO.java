@@ -60,7 +60,9 @@ public class FXImageIO {
 			return;
 		}
 
-		if(out.getName().endsWith(".fck")){
+		String name = out.getName();
+
+		if(name.endsWith(".fck")){
 
 			try(FileOutputStream fStream = new FileOutputStream(out); ObjectOutputStream oStream = new ObjectOutputStream(fStream)){
 				oStream.writeObject(HuffmanCode.encodeImage(ColorOp.toGrayScale(img)));
@@ -68,6 +70,10 @@ public class FXImageIO {
 			}catch (Exception e){
 				return;
 			}
+		}
+
+		if (!name.endsWith(".png")){
+			out = new File(out.getParent(), name + ".png");
 		}
 		
 		try {

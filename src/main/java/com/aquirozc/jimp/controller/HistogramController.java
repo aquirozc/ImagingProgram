@@ -6,7 +6,7 @@ import com.aquirozc.jimp.engine.GrayScaleOp;
 import com.aquirozc.jimp.engine.HistogramOp;
 import com.aquirozc.jimp.engine.HistogramOp.ResultSet;
 import com.aquirozc.jimp.init.FXApp;
-import com.aquirozc.jimp.strings.Strings;
+import com.aquirozc.jimp.strings.Texts;
 
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
@@ -46,7 +46,8 @@ public class HistogramController{
     private BarChart<String ,Integer> offsetChart = (BarChart) offsetPane.lookup("#offset_chart");
     private TextField offsetTF = (TextField) offsetPane.lookup("#offset_tf");
 
-    private Alert boundsError = new Alert(AlertType.ERROR,Strings.OUTOFBOUNDS_ERROR);
+    private Alert boundsError = new Alert(AlertType.ERROR,Texts.OUTOFBOUNDS_ERROR);
+    private Alert nonEclosingBoundsError = new Alert(AlertType.ERROR,Texts.NON_ENCLOSING_BOUNDS_ERROR);
 
     private int[] histogram;
     private MainController controller;
@@ -171,7 +172,7 @@ public class HistogramController{
         }
 
         if (!(min<max)){
-            throw new IllegalArgumentException();
+            nonEclosingBoundsError.showAndWait();
         }
 
         ResultSet res = HistogramOp.resizeHistogram(histogram, controller.getOGImage(),min,max);

@@ -5,7 +5,7 @@ import com.aquirozc.jimp.data.TimelineStack;
 import com.aquirozc.jimp.engine.ColorOp;
 import com.aquirozc.jimp.helper.FXImageIO;
 import com.aquirozc.jimp.init.FXApp;
-import com.aquirozc.jimp.strings.Strings;
+import com.aquirozc.jimp.strings.Texts;
 
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -37,7 +37,8 @@ public class MainController {
     private Image ogImage;
     private Image diskImage;
     private FXImageIO imgHelper;
-    private Alert bwPrompt = new Alert(AlertType.CONFIRMATION, Strings.BW_WARNING);
+    private Alert bwPrompt = new Alert(AlertType.CONFIRMATION, Texts.BW_WARNING);
+    private Alert verApplet = new Alert(AlertType.INFORMATION, Texts.PROGRAM_INFO);
     private TimelineStack history = new TimelineStack(5);
 
     private GrayScaleOPController grayOPController = new GrayScaleOPController(this);
@@ -46,6 +47,7 @@ public class MainController {
     private ConvolveOPController convolveOPController = new ConvolveOPController(this);
     private ColorOPController colorOPController = new ColorOPController(this);
     private OverrideOPController overrideOPController = new OverrideOPController(this);
+    private FaceDetectorController faceDetectorController = new FaceDetectorController(this);
 
     private boolean wasBWImage = false;
     private boolean isBWImage = false;
@@ -56,7 +58,7 @@ public class MainController {
         saveBtn.setOnAction(e -> imgHelper.saveImageToDisk(ogImage));
         undoBtn.setOnAction(this::undoChanges);
         restoreBtn.setOnAction(this::restoreChanges);
-        aboutBtn.setOnAction(e -> new Alert(AlertType.INFORMATION,Strings.PROGRAM_INFO).showAndWait());
+        aboutBtn.setOnAction(e -> verApplet.showAndWait());
         zoomBar.valueProperty().addListener(this::updateZoomLevel);
 
         imgHelper = new FXImageIO(stage);

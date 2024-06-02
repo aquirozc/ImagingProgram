@@ -1,6 +1,8 @@
 package com.aquirozc.jimp.init;
 
 import com.aquirozc.jimp.controller.MainController;
+import com.aquirozc.jimp.strings.Enviroment;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +22,7 @@ public class FXApp extends Application{
 
         MAIN_EDITOR = FXApp.getActivityByName("Editor.fxml");
 
-        stage.setTitle("Java Imaging Program Milestone 1");
+        stage.setTitle(String.format("The Java Imaging Program (%s)",Enviroment.CURRENT_VERSION));
         stage.setScene(new Scene(MAIN_EDITOR));
         stage.show();
 
