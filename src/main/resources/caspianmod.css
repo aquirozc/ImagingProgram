@@ -12,3 +12,9 @@
         linear-gradient(to bottom, derive(-fx-color,-02%), derive(-fx-color,65%) 12%, derive(-fx-color,23%) 88%, derive(-fx-color,50%) 99%, -fx-box-border);
         -fx-background-insets: 0, 0 1 1 1;
 }
+
+.selected-area{
+    -fx-fill : rgba(118, 214, 255, 0.66);
+    -fx-stroke: rgb(59,107,255);
+    -fx-stroke-width: 1px;
+}

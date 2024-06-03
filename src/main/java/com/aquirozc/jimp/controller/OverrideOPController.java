@@ -17,7 +17,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.StackPane; 
 import javafx.scene.shape.Rectangle;
 
 public class OverrideOPController {
@@ -61,6 +61,8 @@ public class OverrideOPController {
 		y0TF.textProperty().addListener(this::validateNumInput);
 		x1TF.textProperty().addListener(this::validateNumInput);
 		y1TF.textProperty().addListener(this::validateNumInput);
+
+		selectedArea.getStyleClass().add("selected-area");
 
         dragModeRB.setSelected(isDragModeEnabled);
         advModeRB.selectedProperty().addListener(this::enableAdvancedMode);

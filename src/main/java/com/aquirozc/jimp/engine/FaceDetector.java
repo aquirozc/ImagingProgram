@@ -29,7 +29,10 @@ public class FaceDetector {
 
         for (int k = 0; k <= SAMPLE_RATE; k++) {
             for (int i = x + (k-1); i >= 0; i--){
-                if (Math.abs(intensity - img.getPixelReader().getArgb(i, y) & 0xFF) <= BRIGHTNESS_THRESHOLD){
+
+                int mierda = img.getPixelReader().getArgb(i, y) & 0xFF;
+
+                if (Math.abs(intensity - mierda ) <= BRIGHTNESS_THRESHOLD){
                     xOffSample.add(i);
                 }
             }
@@ -41,7 +44,10 @@ public class FaceDetector {
 
         for (int k = 0; k <= SAMPLE_RATE; k++) {
             for (int i = x + (k-1); i < img.getWidth(); i++){
-                if (Math.abs(intensity - img.getPixelReader().getArgb(i, y) & 0xFF) <= BRIGHTNESS_THRESHOLD){
+                
+                int mierda = img.getPixelReader().getArgb(i, y) & 0xFF;
+                
+                if (Math.abs(intensity - mierda) <= BRIGHTNESS_THRESHOLD){
                     xTopSample.add(i);
                 }
             }
@@ -53,7 +59,10 @@ public class FaceDetector {
 
         for (int k = 0; k <= SAMPLE_RATE; k++) {
             for (int i = y + (k-1); i >= 0; i--){
-                if (Math.abs(intensity - img.getPixelReader().getArgb(x, i) & 0xFF) <= BRIGHTNESS_THRESHOLD){
+
+                int mierda = img.getPixelReader().getArgb(x, i) & 0xFF;
+
+                if (Math.abs(intensity - mierda) <= BRIGHTNESS_THRESHOLD){
                     yOffSample.add(i);
                 }
             }

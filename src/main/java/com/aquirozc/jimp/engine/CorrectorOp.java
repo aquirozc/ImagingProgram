@@ -58,5 +58,30 @@ public class CorrectorOp {
 
         return res;
     }
+
+    public static Image getTH(Image img){
+
+        int w = (int) img.getWidth(); int h = (int) img.getHeight();
+        WritableImage res = new WritableImage(w,h);
+
+        ByteProcessor input = new ByteProcessor(w, h);
+
+        IntStream.range(0, w).forEach(i -> {
+            IntStream.range(0, h).forEach(j -> {
+                input.set(i, j, img.getPixelReader().getArgb(i, j) & 0xFF);
+            });
+        });
+  
+        input.autoThreshold();
+
+        IntStream.range(0, w).forEach(i -> {
+            IntStream.range(0, h).forEach(j -> {
+                int brightness = input.get(i, j);
+                res.getPixelWriter().setArgb(i, j,(255 << 24) | (brightness << 16) | (brightness << 8) | brightness);
+            });
+        });
+
+        return res;
+    }
     
 }

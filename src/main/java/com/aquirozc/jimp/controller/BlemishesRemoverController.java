@@ -40,6 +40,7 @@ public class BlemishesRemoverController {
         canvas.getChildren().add(brush);
         canvas.addEventFilter(MouseEvent.ANY, this::handleMouseSelection);
 
+        brush.getStyleClass().add("selected-area");
         brush.setRadius(0);
         brush.setOpacity(0);
 

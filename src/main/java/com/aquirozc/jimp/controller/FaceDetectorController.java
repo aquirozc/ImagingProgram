@@ -4,10 +4,10 @@ import com.aquirozc.jimp.data.AWTKernel;
 import com.aquirozc.jimp.data.Point;
 import com.aquirozc.jimp.data.Region;
 import com.aquirozc.jimp.engine.ConvolveOp;
+import com.aquirozc.jimp.engine.CorrectorOp;
 import com.aquirozc.jimp.engine.FaceDetector;
 import com.aquirozc.jimp.init.FXApp;
 
-import java.util.Stack;
 import java.util.stream.IntStream;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
@@ -34,7 +34,7 @@ public class FaceDetectorController {
     public FaceDetectorController(MainController controller){
 
         this.controller = controller;
-        canvas.setOnMouseClicked(this::detectFaces);
+        canvas.addEventFilter(MouseEvent.ANY, this::detectFaces);
 
         tabPane.getSelectionModel().selectedItemProperty().addListener(this::seeIfActive);
         zoomBar.valueProperty().addListener(this::updateZoomLevel);
@@ -44,6 +44,10 @@ public class FaceDetectorController {
     public void detectFaces(MouseEvent e){
 
         if(!isTabActive){
+            return;
+        }
+
+        if(!e.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
             return;
         }
 
@@ -61,8 +65,7 @@ public class FaceDetectorController {
         Image gauss = ConvolveOp.applyFilter(gray,AWTKernel.MEAN27X27_KERNEL);
 
         int x = (int) (e.getX()/zoomFactor); int y = (int) (e.getY()/zoomFactor);
-
-        Region r = FaceDetector.getFaceCornerPoints(new Point(x,y), gray);
+        Region r = FaceDetector.getFaceCornerPoints(new Point(x,y), CorrectorOp.getTH(gray));
 
         IntStream.range(r.northW().x(), r.southE().x()).forEach(i -> {
             IntStream.range(r.northW().y(), r.southE().y()).forEach(j -> {

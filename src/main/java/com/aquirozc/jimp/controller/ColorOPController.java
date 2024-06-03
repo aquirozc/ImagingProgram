@@ -13,7 +13,6 @@ public class ColorOPController {
 
     private Button laplaceBtn = (Button) parent.lookup("#color_tab").lookup("#laplace_btn");
 	private Button gaussBtn = (Button) parent.lookup("#color_tab").lookup("#gauss_btn");
-	private Button sharperBtn = (Button) parent.lookup("#color_tab").lookup("#sharper_btn");
 	private Button embossBtn = (Button) parent.lookup("#color_tab").lookup("#emboss_btn");
     private Button highPassBtn = (Button) parent.lookup("#color_tab").lookup("#high_pass_btn");
 
@@ -25,7 +24,6 @@ public class ColorOPController {
 
         laplaceBtn.setOnMouseClicked(this::convertToSepia);
 		gaussBtn.setOnMouseClicked(this::convertToSepiaBlueish);
-		sharperBtn.setOnMouseClicked(this::convertToSepiaPinkish);
 		embossBtn.setOnMouseClicked(this::convertToPseudoColor);
         highPassBtn.setOnMouseClicked(this::convertToGrayscale);
 
@@ -64,16 +62,6 @@ public class ColorOPController {
         controller.updateCanvas(ColorOp.toBlueish(controller.getOGImage()));
         controller.setIsBWImage(false);
         controller.applyChanges();
-
-    }
-
-    private void convertToSepiaPinkish(MouseEvent e){
-
-        if (controller.isOGImageNull()){
-            return;
-        }
-
-        controller.updateCanvas(ColorOp.toPinkish(controller.getOGImage()));
 
     }
 
