@@ -2,7 +2,7 @@ package com.aquirozc.jimp.controller;
 
 import com.aquirozc.jimp.data.TimelineRecord;
 import com.aquirozc.jimp.data.TimelineStack;
-import com.aquirozc.jimp.engine.ColorOp;
+import com.aquirozc.jimp.engine.ColorFilterOp;
 import com.aquirozc.jimp.helper.FXImageIO;
 import com.aquirozc.jimp.init.FXApp;
 import com.aquirozc.jimp.strings.Texts;
@@ -21,7 +21,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 
-
 public class MainController {
 
     private Parent parent = FXApp.MAIN_EDITOR;
@@ -39,16 +38,14 @@ public class MainController {
     private FXImageIO imgHelper;
     private Alert bwPrompt = new Alert(AlertType.CONFIRMATION, Texts.BW_WARNING);
     private Alert verApplet = new Alert(AlertType.INFORMATION, Texts.PROGRAM_INFO);
-    private TimelineStack history = new TimelineStack(5);
+    private TimelineStack history = new TimelineStack(9);
 
-    private GrayScaleOPController grayOPController = new GrayScaleOPController(this);
-    private SpatialOPController spatialOPController = new SpatialOPController(this);
-    private HistogramController histogramOPController = new HistogramController(this);
-    private ConvolveOPController convolveOPController = new ConvolveOPController(this);
-    private ColorOPController colorOPController = new ColorOPController(this);
-    private OverrideOPController overrideOPController = new OverrideOPController(this);
-    private FaceDetectorController faceDetectorController = new FaceDetectorController(this);
-    private BlemishesRemoverController blemishesRemoverController = new BlemishesRemoverController(this);
+    protected SpatialOPController spatialOPController = new SpatialOPController(this);
+    protected ToneOPController toneOPController = new ToneOPController(this);
+    protected HistogramController histogramController = new HistogramController(this);
+    protected FilterOPController colorFilterOPController = new FilterOPController(this);
+    protected OverrideOPController overrideOPController = new OverrideOPController(this);
+    protected BeautyController beautyController = new BeautyController(this);
 
     private boolean wasBWImage = false;
     private boolean isBWImage = false;
@@ -89,9 +86,8 @@ public class MainController {
     }
 
     private void onRefresh(){
-        grayOPController.resetSliders();
-        histogramOPController.onRefresh();
         spatialOPController.onRefresh();
+        toneOPController.resetSliders();
         overrideOPController.onRefresh();
     }
 
@@ -126,7 +122,7 @@ public class MainController {
             isBWImage = bwPrompt.showAndWait().get().equals(ButtonType.OK);
             bwPrompt.close();
             if(isBWImage){
-                updateCanvas(ColorOp.toGrayScale(ogImage));
+                updateCanvas(ColorFilterOp.toGrayScale(ogImage));
                 applyChanges();
             }
         }

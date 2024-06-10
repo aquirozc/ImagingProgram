@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -12,11 +12,11 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -29,32 +29,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.RangeSlider?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="820.0" styleClass="caspian-pane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: rgb(180,180,180); -fx-border-width: 0 0.5px 0 0;" styleClass="caspian-pane" BorderPane.alignment="CENTER">
-         <children>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" VBox.vgrow="ALWAYS">
-               <content>
-                  <StackPane prefHeight="150.0" prefWidth="200.0">
-                     <children>
-                        <ImageView id="target_vw" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <StackPane id="canvas_vb" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0" />
-                     </children>
-                  </StackPane>
-               </content>
-               <VBox.margin>
-                  <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-               </VBox.margin>
-            </ScrollPane>
-            <Slider id="zoom_bar" max="200.0" min="20.0" value="100.0">
-               <VBox.margin>
-                  <Insets bottom="11.0" left="22.0" right="22.0" top="11.0" />
-               </VBox.margin>
-            </Slider>
-         </children>
-      </VBox>
-   </center>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="930.0" styleClass="caspian-pane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar id="top_menu" BorderPane.alignment="CENTER">
         <menus>
@@ -81,399 +58,298 @@
    <right>
       <TabPane id="tab_pane" minWidth="-Infinity" prefHeight="200.0" prefWidth="333.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab id="tab_pane" text="Ajustes (B/N)">
+          <Tab id="tab_pane" text="Ajustes">
                <content>
-                  <Accordion id="bn_tab" styleClass="caspian-pane">
-                    <panes>
-                      <TitledPane fx:id="defaultBN" text="Brillo">
-                           <content>
-                              <GridPane>
-                                <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label maxWidth="-Infinity" text="Ajuste el factor de incremento" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets top="12.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Slider id="brightness_bar" blockIncrement="2.0" max="66.0" min="-66.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Slider>
-                                    <Button id="brightnessy_btn" mnemonicParsing="false" prefWidth="77.0" text="Aplicar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-                                    <Button id="brightnessn_btn" mnemonicParsing="false" prefHeight="26.0" prefWidth="77.0" text="Cancelar" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="50.0" left="30.0" right="30.0" top="50.0" />
-                                 </padding>
-                              </GridPane>
-                           </content>
-                      </TitledPane>
-                      <TitledPane text="Contraste">
-                           <content>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Slider id="contrastg_bar" blockIncrement="0.25" max="1.75" min="0.25" value="1.0" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-                                    <Label text="Ajuste el factor gamma" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BASELINE">
-                                       <GridPane.margin>
-                                          <Insets top="12.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Label text="Ajuste el factor beta" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="TOP">
-                                       <GridPane.margin>
-                                          <Insets top="12.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Slider id="contrastb_bar" blockIncrement="2.0" max="30.0" min="-30.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Slider>
-                                    <Button id="contrastn_btn" mnemonicParsing="false" prefWidth="77.0" text="Cancelar" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
-                                    <Button id="contrasty_btn" mnemonicParsing="false" prefWidth="77.0" text="Aplicar" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
-                                 </padding>
-                              </GridPane>
-                           </content>
-                      </TitledPane>
-                      <TitledPane text="Negativo">
-                           <content>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <Label contentDisplay="TOP" text="Presione el botón para invertir los colores de la imagen, para regresar a los colores originales pulse el botón una segunda vez" textAlignment="CENTER" wrapText="true" GridPane.valignment="CENTER" />
-                                    <Button id="negative_btn" mnemonicParsing="false" text="Invertir colores" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="50.0" left="30.0" right="30.0" top="50.0" />
-                                 </padding>
-                              </GridPane>
-                           </content>
-                      </TitledPane>
-                    </panes>
-                  </Accordion>
+                  <VBox id="tone_tab" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="caspian-pane">
+                     <children>
+                        <Label maxWidth="1.7976931348623157E308" text="Brillo">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Ajuste el valor de incremento" />
+                        <Slider id="brightness_bar" blockIncrement="2.0" min="-100.0" />
+                        <Separator prefWidth="200.0" />
+                        <Label maxWidth="1.7976931348623157E308" text="Contraste">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Ajuste el factor gamma" />
+                        <Slider id="contrastg_bar" blockIncrement="0.25" max="1.85" min="0.15" value="1.0" />
+                        <Label text="Ajuste el factor beta" />
+                        <Slider id="contrastb_bar" blockIncrement="2.0" min="-100.0" />
+                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                           <children>
+                              <Button id="rollback_btn" mnemonicParsing="false" text="Cancelar" />
+                              <Button id="commit_btn" mnemonicParsing="false" text="Aceptar" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </VBox>
                </content>
           </Tab>
-            <Tab text="Perspectiva">
-               <content>
-                  <GridPane id="perspective_tab" styleClass="caspian-pane">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button id="rotate270_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Rotar a la izquierda" wrapText="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" />
-                        <Button id="rotate90_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Rotar a la derecha" wrapText="true" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" />
-                        <Button id="mirrorx_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Reflejar horizontalmente" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" />
-                        <Button id="mirrory_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Reflejar verticalmente" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
-                     </children>
-                     <padding>
-                        <Insets bottom="50.0" left="40.0" right="40.0" top="50.0" />
-                     </padding>
-                  </GridPane>
-               </content>
-            </Tab>
             <Tab text="Histograma">
                <content>
-                  <Accordion id="histogram_tab" styleClass="caspian-pane">
-                    <panes>
-                      <TitledPane animated="false" text="Equalizar histograma">
-                           <content>
-                              <GridPane>
-                                <columnConstraints>
-                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                </columnConstraints>
-                                <rowConstraints>
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                </rowConstraints>
-                                 <children>
-                                    <BarChart id="equalize_chart" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                                      <xAxis>
-                                        <CategoryAxis side="BOTTOM" />
-                                      </xAxis>
-                                      <yAxis>
-                                        <NumberAxis side="LEFT" />
-                                      </yAxis>
-                                    </BarChart>
-                                    <Label text="Visualización actual del histograma" GridPane.halignment="CENTER">
-                                       <GridPane.margin>
-                                          <Insets bottom="30.0" top="30.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Button id="equalize_btn" mnemonicParsing="false" text="Equalizar" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                                       <GridPane.margin>
-                                          <Insets bottom="30.0" top="30.0" />
-                                       </GridPane.margin>
-                                    </Button>
-                                 </children>
-                              </GridPane>
-                           </content>
-                      </TitledPane>
-                      <TitledPane animated="false" text="Estirar o expandir histograma">
-                           <content>
-                              <GridPane>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <BarChart id="resize_chart" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                                       <xAxis>
-                                          <CategoryAxis side="BOTTOM" />
-                                       </xAxis>
-                                       <yAxis>
-                                          <NumberAxis side="LEFT" />
-                                       </yAxis>
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" />
-                                       </GridPane.margin>
-                                    </BarChart>
-                                    <Label text="Visualización actual del histograma" GridPane.columnSpan="4" GridPane.halignment="CENTER">
-                                       <GridPane.margin>
-                                          <Insets bottom="30.0" top="30.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Button id="resize_btn" mnemonicParsing="false" text="Calcular" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.rowSpan="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Button>
-                                    <Label text="Minímo: " GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    <Label text="Máximo:" GridPane.halignment="CENTER" GridPane.rowIndex="3">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <TextField id="min_tf" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    <TextField id="max_tf" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="20.0" />
-                                 </padding>
-                              </GridPane>
-                           </content>
-                      </TitledPane>
-                      <TitledPane animated="false" text="Desplazar histograma">
-                           <content>
-                              <GridPane>
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <BarChart id="offset_chart" GridPane.columnSpan="4" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-                                       <xAxis>
-                                          <CategoryAxis side="BOTTOM" />
-                                       </xAxis>
-                                       <yAxis>
-                                          <NumberAxis side="LEFT" />
-                                       </yAxis>
-                                       <GridPane.margin>
-                                          <Insets bottom="20.0" />
-                                       </GridPane.margin>
-                                    </BarChart>
-                                    <Label text="Visualización actual del histograma" GridPane.columnSpan="4" GridPane.halignment="CENTER">
-                                       <GridPane.margin>
-                                          <Insets bottom="30.0" top="30.0" />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Button id="offset_btn" mnemonicParsing="false" text="Calcular" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="CENTER" GridPane.vgrow="NEVER">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Button>
-                                    <Label text="Offset" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                    <TextField id="offset_tf" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="30.0" />
-                                 </padding>
-                              </GridPane>
-                           </content>
-                      </TitledPane>
-                    </panes>
-                  </Accordion>
-               </content>
-            </Tab>
-            <Tab text="Filtros">
-               <content>
-                  <VBox id="filter_tab" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" styleClass="caspian-pane">
+                  <VBox id="histogram_tab" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="caspian-pane">
                      <children>
-                        <Button id="laplace_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Aplicar filtro Laplaciano" />
-                        <Button id="gauss_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Aplicar filtro Gaussiano" />
-                        <Button id="sharper_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Aplicar filtro Agudizador" />
-                        <Button id="emboss_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Aplicar filtro Embossiano" />
-                        <Button id="high_pass_btn" mnemonicParsing="false" prefHeight="38.0" prefWidth="200.0" text="Aplicar filtro High Pass" />
+                        <Label text="Visualización actual del histograma">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Label>
+                        <BarChart id="histogram_chart" prefHeight="100.0">
+                          <xAxis>
+                            <CategoryAxis side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                        <HBox alignment="TOP_CENTER" spacing="10.0">
+                           <children>
+                              <Label text="Mínimo" />
+                              <TextField id="min_tf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="66.0" text="0" />
+                              <Label text="Máximo" />
+                              <TextField id="max_tf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="66.0" text="255" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <RangeSlider id="range_slider" blockIncrement="1.0" highValue="1.0" lowValue="0.0" min="0" />
+                        <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button id="trim_btn" mnemonicParsing="false" text="Recortar" />
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" top="20.0" />
+                           </padding>
+                        </HBox>
+                        <Separator prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Separator>
+                        <Label text="Mejora automática">
+                           <VBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ecualizar el histograma redistribuye los niveles de intensidad, realzando el contraste y detalles de la imagen." textAlignment="CENTER" wrappingWidth="250.0" />
+                        <Button id="equalize_btn" mnemonicParsing="false" text="Equalizar">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
                      </children>
                      <padding>
-                        <Insets left="15.0" right="15.0" />
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </padding>
                   </VBox>
                </content>
             </Tab>
-            <Tab text="Color">
+            <Tab text="Filtros">
                <content>
-                  <GridPane id="color_tab" styleClass="caspian-pane">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button id="high_pass_btn" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                           <graphic>
-                              <GridPane prefHeight="29.0" prefWidth="124.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Escala de grises" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-                                       <image>
-                                          <Image url="@GrayScaleMode.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Button id="emboss_btn" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                           <graphic>
-                              <GridPane prefHeight="29.0" prefWidth="124.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pseudocolor" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-                                       <image>
-                                          <Image url="@ColorMode.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                           <GridPane.margin>
-                              <Insets bottom="10.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Button id="laplace_btn" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <graphic>
-                              <GridPane prefHeight="29.0" prefWidth="124.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sepia calido" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-                                       <image>
-                                          <Image url="@Sepia0Mode.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                           <GridPane.margin>
-                              <Insets top="10.0" />
-                           </GridPane.margin>
-                        </Button>
-                        <Button id="gauss_btn" mnemonicParsing="false" prefHeight="120.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-                           <graphic>
-                              <GridPane prefHeight="29.0" prefWidth="124.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                                    <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sepia frío" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                                    <ImageView fitHeight="66.0" fitWidth="66.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
-                                       <image>
-                                          <Image url="@Sepia1Mode.png" />
-                                       </image>
-                                    </ImageView>
-                                 </children>
-                              </GridPane>
-                           </graphic>
-                           <GridPane.margin>
-                              <Insets top="10.0" />
-                           </GridPane.margin>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </GridPane>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                     <content>
+                        <VBox id="filter_tab" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="caspian-pane">
+                           <children>
+                              <Label text="Filtros de color">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button id="grayscale_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Escala de grises" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@GrayScaleMode.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="pseudocolor_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Pseudocolor" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@ColorMode.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="sepia0_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Sepia cálido" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Sepia0Mode.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="sepia1_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Sepia frío" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Sepia1Mode.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="negative_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Negativo" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@NegativeMode.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Label text="Filtros lineales">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button id="laplace_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Laplaciano" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@blueprint_compasses.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="gauss_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Gaussiano" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@blueprint_compasses.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="emboss_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Embossiano" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@blueprint_compasses.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="high_pass_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Highpass" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@blueprint_compasses.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                              <Button id="sharper_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                 <graphic>
+                                    <HBox alignment="CENTER" spacing="20.0">
+                                       <children>
+                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Sharpener" />
+                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@blueprint_compasses.png" />
+                                             </image>
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </HBox>
+                                 </graphic>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="25.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
                </content>
             </Tab>
             <Tab text="Reemplazar pixeles">
@@ -545,40 +421,161 @@
                   </VBox>
                </content>
             </Tab>
-            <Tab text="Detector de rostros">
+            <Tab text="Belleza">
                <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="caspian-pane">
-                     <center>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione con el ratón el punto central del rostro para comenzar la detección" textAlignment="CENTER" wrappingWidth="200.0" BorderPane.alignment="CENTER" />
-                     </center>
-                  </BorderPane>
-               </content>
-            </Tab>
-            <Tab text="Eliminar imperfecciones">
-               <content>
-                  <GridPane id="blemishes_tab" styleClass="caspian-pane">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <VBox id="beauty_tab" alignment="CENTER_LEFT" prefWidth="180.0" styleClass="caspian-pane">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccione las imperfecciones del rostro que desea eliminar usando el ratón. Ajuste el radio del pincel a su preferencia" wrappingWidth="200.0" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM">
-                           <GridPane.margin>
-                              <Insets bottom="22.0" />
-                           </GridPane.margin>
+                        <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Ocultar rostro">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="workmode1" />
+                           </toggleGroup>
+                        </RadioButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Seleccione con el ratón el punto central del rostro para comenzar la detección" wrappingWidth="250.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" top="8.0" />
+                           </VBox.margin>
                         </Text>
-                        <Slider id="radio_bar" blockIncrement="2.0" max="33.0" min="9.0" value="11.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+                        <RadioButton id="advmode_rb" mnemonicParsing="false" styleClass="rb" text="Eliminar manchas" toggleGroup="$workmode1">
+                           <VBox.margin>
+                              <Insets top="15.0" />
+                           </VBox.margin>
+                        </RadioButton>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="8.0" top="8.0" />
+                           </VBox.margin>
+                        </Text>
+                        <Slider id="radio_bar" blockIncrement="2.0" max="33.0" min="9.0" value="11.0" />
                      </children>
                      <padding>
-                        <Insets bottom="55.0" left="55.0" right="55.0" top="55.0" />
+                        <Insets left="44.0" right="44.0" />
                      </padding>
-                  </GridPane>
+                  </VBox>
                </content>
             </Tab>
         </tabs>
       </TabPane>
    </right>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" styleClass="caspian-pane" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Button id="rotate270_btn" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@rotate_left.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="rotate90_btn" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@rotate_right.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="mirrorx_btn" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@mirror_horizontally.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button id="mirrory_btn" mnemonicParsing="false">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@mirror_vertically.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding>
+            </HBox>
+            <GridPane VBox.vgrow="ALWAYS">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
+                     <content>
+                        <StackPane prefHeight="150.0" prefWidth="200.0">
+                           <children>
+                              <ImageView id="target_vw" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                              <StackPane id="canvas_vb" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
+                                 <StackPane.margin>
+                                    <Insets />
+                                 </StackPane.margin>
+                              </StackPane>
+                           </children>
+                        </StackPane>
+                     </content>
+                     <GridPane.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </ScrollPane>
+                  <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@zoom_out.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets right="30.0" />
+                     </GridPane.margin>
+                  </ImageView>
+                  <Slider id="zoom_bar" max="200.0" min="20.0" value="100.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                  <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <image>
+                        <Image url="@zoom_in.png" />
+                     </image>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </ImageView>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+   <stylesheets>
+      <URL value="@caspian.css" />
+      <URL value="@caspianmod.css" />
+   </stylesheets>
 </BorderPane>

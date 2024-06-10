@@ -7,7 +7,7 @@ import com.aquirozc.jimp.util.ColorConverter;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 
-public class ColorOp {
+public class ColorFilterOp {
 
     public static WritableImage toGrayScale(Image src) {
 		
@@ -104,7 +104,7 @@ public class ColorOp {
 		return image;		
 	}
 
-	public static WritableImage toPinkish(Image src) {
+	public static WritableImage toNegative(Image src) {
 		
 		int w = (int) src.getWidth(); int h = (int) src.getHeight();
 		
@@ -115,17 +115,9 @@ public class ColorOp {
 				
 				int color = src.getPixelReader().getArgb(i, j);
 
-				int red = (color & 0xFF0000) >> 16;
-				int green = (color & 0xFF00) >> 8;
-				int blue = color & 0xFF;
-
-				int r = (int) ((red * .393) + (green *.769) + (blue * .189));
-				int g= (int) ((red * .349) + (green *.686) + (blue* .168));
-				int b = (int) ((red * .272) + (green *.534) + (blue * .131));
-
-				r *= 1.2;
-				g *= 0.8;
-				b *= 1.2;
+				int r = 255 - (color >> 16 & 0xFF);
+				int g = 255 - (color >> 8 & 0xFF);
+				int b = 255 - (color & 0xFF);
 
 				r = r > 255 ? 255 : r;
 				g = g > 255 ? 255 : g;

@@ -73,7 +73,7 @@ public class OverrideOPController {
     }
 
     private void closeAllPanes(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue){
-        isTabActive = tabPane.getSelectionModel().getSelectedIndex() == 5;   
+        isTabActive = tabPane.getSelectionModel().getSelectedIndex() == 3;   
 
         if (!isTabActive){
             resetInput();

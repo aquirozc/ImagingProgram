@@ -1,7 +1,6 @@
 package com.aquirozc.jimp.init;
 
 import com.aquirozc.jimp.controller.MainController;
-import com.aquirozc.jimp.strings.Enviroment;
 import com.aquirozc.jimp.strings.Texts;
 
 import javafx.application.Application;
@@ -39,8 +38,6 @@ public class FXApp extends Application{
     
         try {
             parent = new FXMLLoader(FXApp.class.getClassLoader().getResource(name)).load();
-            parent.getStylesheets().add("caspian.css");
-            parent.getStylesheets().add("caspianmod.css");
         } catch (Exception e) {
             e.printStackTrace();
         }
