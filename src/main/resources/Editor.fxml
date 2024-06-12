@@ -491,7 +491,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button id="mirrorx_btn" mnemonicParsing="false">
+                  <Button id="mirrory_btn" mnemonicParsing="false">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -503,7 +503,7 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button id="mirrory_btn" mnemonicParsing="false">
+                  <Button id="mirrorx_btn" mnemonicParsing="false">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>

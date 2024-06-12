@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class SpatialOPController {
@@ -43,6 +44,7 @@ public class SpatialOPController {
         RotateTransition transition = new RotateTransition(Duration.millis(300), target_vw);
 
         transition.setByAngle(90);
+        transition.setAxis(Rotate.Z_AXIS);
         transition.setOnFinished(a -> {
             target_vw.setRotate(0);
             controller.updateCanvas(SpatialOP.rotate90DClockwise(controller.getOGImage()));
@@ -62,6 +64,7 @@ public class SpatialOPController {
         RotateTransition transition = new RotateTransition(Duration.millis(300), target_vw);
         
         transition.setByAngle(-90);
+        transition.setAxis(Rotate.Z_AXIS);
         transition.setOnFinished(a -> {
             controller.updateCanvas(SpatialOP.rotate90DCounterClockwise(controller.getOGImage()));
             target_vw.setRotate(0);
@@ -72,30 +75,44 @@ public class SpatialOPController {
 
     }
 
+    private void mirrorYAxis(MouseEvent e){
+
+        if(controller.isOGImageNull()){
+            return;
+        }
+        
+        RotateTransition transition = new RotateTransition(Duration.millis(500), target_vw);
+        
+        transition.setAxis(Rotate.Y_AXIS);
+        transition.setByAngle(180);
+        transition.setOnFinished(a -> {
+        	target_vw.setRotate(0);
+        	controller.updateCanvas(SpatialOP.mirrorYAxis(controller.getOGImage()));
+        	controller.applyChanges();
+        });
+        
+        transition.play();
+
+    }
+
     private void mirrorXAxis(MouseEvent e){
 
         if(controller.isOGImageNull()){
             return;
         }
 
-        controller.updateCanvas(SpatialOP.mirrorXAxis(controller.getOGImage()));
-        controller.applyChanges();
-
-    }
-
-    private void mirrorYAxis(MouseEvent e){
-
-        if(controller.isOGImageNull()){
-            return;
-        }
-
-        controller.updateCanvas(SpatialOP.mirrorYAxis(controller.getOGImage()));
-        controller.applyChanges();
-
-    }
-
-    public void onRefresh(){
+        RotateTransition transition = new RotateTransition(Duration.millis(500), target_vw);
         
+        transition.setAxis(Rotate.X_AXIS);
+        transition.setByAngle(180);
+        transition.setOnFinished(a -> {
+        	target_vw.setRotate(0);
+        	controller.updateCanvas(SpatialOP.mirrorXAxis(controller.getOGImage()));
+        	controller.applyChanges();
+        });
+        
+        transition.play();
+
     }
     
 }

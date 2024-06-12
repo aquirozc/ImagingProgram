@@ -41,7 +41,7 @@ public class SpatialOP {
 
     }
 
-    public static Image mirrorXAxis(Image src){
+    public static Image mirrorYAxis(Image src){
 
         int w = (int) src.getWidth(); int h = (int) src.getHeight();
         WritableImage img = new WritableImage(w, h);
@@ -58,7 +58,7 @@ public class SpatialOP {
 
     }
 
-    public static Image mirrorYAxis(Image src){
+    public static Image mirrorXAxis(Image src){
 
         int w = (int) src.getWidth(); int h = (int) src.getHeight();
         WritableImage img = new WritableImage(w, h);

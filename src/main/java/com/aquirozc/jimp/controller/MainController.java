@@ -86,7 +86,6 @@ public class MainController {
     }
 
     private void onRefresh(){
-        spatialOPController.onRefresh();
         toneOPController.resetSliders();
         overrideOPController.onRefresh();
     }
