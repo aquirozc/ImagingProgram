@@ -48,3 +48,10 @@
     -fx-background-insets: 0, 1 0 1 0;
     -fx-background-radius: 0, 0 ;
 }
+
+.default-color0.chart-bar { -fx-bar-fill: red }
+.default-color1.chart-bar { -fx-bar-fill: green }
+.default-color2.chart-bar { -fx-bar-fill: blue }
+.default-color3.chart-bar { -fx-bar-fill: red }
+.default-color4.chart-bar { -fx-bar-fill: green }
+.default-color5.chart-bar { -fx-bar-fill: blue }

@@ -1,16 +1,13 @@
 package com.aquirozc.jimp.controller;
 
-import java.util.stream.IntStream;
-
 import org.controlsfx.control.RangeSlider;
-
 import com.aquirozc.jimp.engine.HistogramOp;
 import com.aquirozc.jimp.engine.HistogramOp.ResultSet;
 import com.aquirozc.jimp.init.FXApp;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
-import javafx.scene.chart.BarChart;
+import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Button;
@@ -26,7 +23,7 @@ public class HistogramController{
     private TabPane tabPane = (TabPane) parent.lookup("#tab_pane");
 
     
-    private BarChart<String ,Integer> histogramChart = (BarChart) parent.lookup("#histogram_tab").lookup("#histogram_chart");
+    private StackedBarChart<String, Number> histogramChart = (StackedBarChart) parent.lookup("#histogram_tab").lookup("#histogram_chart");
 
     private TextField rMaxTF = (TextField) parent.lookup("#histogram_tab").lookup("#max_tf");
     private TextField rMinTF = (TextField) parent.lookup("#histogram_tab").lookup("#min_tf");
@@ -36,7 +33,7 @@ public class HistogramController{
 
     private RangeSlider rangeSlider = (RangeSlider) parent.lookup("#histogram_tab").lookup("#range_slider");
 
-    private int[] histogram;
+    private int[][] histogram;
     private MainController controller;
 
     public HistogramController(MainController controller){
@@ -59,18 +56,13 @@ public class HistogramController{
 
     }
 
-    private void closeAllPanes(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue){
+    public void closeAllPanes(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue){
 
         if(tabPane.getSelectionModel().getSelectedIndex() != 1){
             return;
         }
 
         if(controller.isOGImageNull()){
-            return;
-        }
-
-        if(!controller.isBWImage()){
-            tabPane.getSelectionModel().selectPrevious();
             return;
         }
 
@@ -126,16 +118,18 @@ public class HistogramController{
     }
 
     private void updateHistogramChart(){
-
-        Series<String,Integer> series = new Series<>();
-
-       IntStream.range(0, 256).forEach(i ->{
-            series.getData().add(new Data<String,Integer>(i + "", histogram[i]));
-       });
-
-       histogramChart.getData().clear();
-       histogramChart.getData().add(series);
-
+    	
+    	histogramChart.getData().clear();
+    	
+    	for (int k = 0; k < 3; k++) {
+    		Series<String, Number> series = new Series<String, Number>();
+    		for (int i = 0; i < 256; i++) {
+            	series.getData().add(new Data<String, Number>(i + "", Integer.valueOf(histogram[k][i])));
+            }
+    		histogramChart.getData().addAll(series);
+    		
+    	}
+    	
     }
 
     private void validateNumInput(ObservableValue<? extends String> observable, String oldValue, String newValue)  {

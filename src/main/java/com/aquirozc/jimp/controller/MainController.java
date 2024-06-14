@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -32,7 +33,8 @@ public class MainController {
     private MenuItem aboutBtn = ((MenuBar)parent.lookup("#top_menu")).getMenus().get(2).getItems().get(0);
     private Slider zoomBar = (Slider) parent.lookup("#zoom_bar");
     private ImageView targetVW = (ImageView) parent.lookup("#target_vw");
-
+    private ScrollPane scrollPane = (ScrollPane) parent.lookup("#scroll_pane");
+    
     private Image ogImage;
     private Image diskImage;
     private FXImageIO imgHelper;
@@ -86,7 +88,8 @@ public class MainController {
     }
 
     private void onRefresh(){
-        toneOPController.resetSliders();
+    	histogramController.closeAllPanes(null, null, null);   
+    	toneOPController.resetSliders();
         overrideOPController.onRefresh();
     }
 
@@ -136,15 +139,21 @@ public class MainController {
         history.clear();
 
         int w = (int) diskImage.getWidth(); int h = (int) diskImage.getHeight();
-
         ogImage = new WritableImage(diskImage.getPixelReader(), w, h);
         isBWImage = false;
 
         targetVW.setImage(ogImage);
-        targetVW.setFitHeight(h);
-        targetVW.setFitWidth(w);
-
-        zoomBar.setValue(100);
+        
+        double zoom = ((scrollPane.getHeight() - 10)/ogImage.getHeight())*100d;
+        zoomBar.setValue(Math.min(Math.max(zoom, 20), 200));
+        
+        if(targetVW.getFitWidth() > scrollPane.getWidth()) {
+        	zoom = ((scrollPane.getWidth() - 10)/ogImage.getWidth())*100d;
+            zoomBar.setValue(Math.min(Math.max(zoom, 20), 200));
+        }
+        
+       
+        
         refreshCanvas();
 
     }
