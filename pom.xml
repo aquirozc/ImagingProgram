@@ -5,7 +5,7 @@
 
     <groupId>com.aquirozc.jimp</groupId>
     <artifactId>Java_Imaging_Program</artifactId>
-    <version>Milestone2_Build2.13</version>
+    <version>Milestone3_Build2.22</version>
     <packaging>jar</packaging>
 
     <properties>

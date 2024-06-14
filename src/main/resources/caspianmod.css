@@ -1,3 +1,24 @@
+.root {
+
+    -fx-base: #d0d0d0;
+    -fx-color: -fx-base;
+
+
+    -fx-box-border: ladder(
+        -fx-color,
+        black 20%,
+        derive(-fx-color,-30%) 30%
+    );
+
+
+    -fx-body-color: linear-gradient(
+        to bottom,
+        derive(-fx-color,34%) 0%,
+        derive(-fx-color,-18%) 100%
+    );
+    
+}
+
 .tab-pane > .tab-header-area > .control-buttons-tab > .container > .tab-down-button {
     -fx-background-color: none;
 }
@@ -17,4 +38,13 @@
     -fx-fill : rgba(118, 214, 255, 0.66);
     -fx-stroke: rgb(59,107,255);
     -fx-stroke-width: 1px;
+}
+
+.menu-bar {
+    -fx-padding: 0.0em 0.666667em 0.0em 0.666667em; /* 0 8 0 8 */
+    -fx-spacing: 0.166667em; /* 2 */
+    -fx-base: derive(#d0d0d0,-70%);
+    -fx-background-color: linear-gradient(to bottom, derive(-fx-color,50%), derive(-fx-color,-30%)), -fx-body-color;
+    -fx-background-insets: 0, 1 0 1 0;
+    -fx-background-radius: 0, 0 ;
 }

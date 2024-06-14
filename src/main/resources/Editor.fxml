@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.chart.CategoryAxis?>
@@ -21,17 +20,14 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 <?import org.controlsfx.control.RangeSlider?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="930.0" styleClass="caspian-pane" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="930.0" styleClass="caspian-pane" stylesheets="@caspianmod.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar id="top_menu" BorderPane.alignment="CENTER">
         <menus>
@@ -55,418 +51,39 @@
         </menus>
       </MenuBar>
    </top>
-   <right>
-      <TabPane id="tab_pane" minWidth="-Infinity" prefHeight="200.0" prefWidth="333.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab id="tab_pane" text="Ajustes">
-               <content>
-                  <VBox id="tone_tab" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="caspian-pane">
-                     <children>
-                        <Label maxWidth="1.7976931348623157E308" text="Brillo">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Ajuste el valor de incremento" />
-                        <Slider id="brightness_bar" blockIncrement="2.0" min="-100.0" />
-                        <Separator prefWidth="200.0" />
-                        <Label maxWidth="1.7976931348623157E308" text="Contraste">
-                           <font>
-                              <Font name="System Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label text="Ajuste el factor gamma" />
-                        <Slider id="contrastg_bar" blockIncrement="0.25" max="1.85" min="0.15" value="1.0" />
-                        <Label text="Ajuste el factor beta" />
-                        <Slider id="contrastb_bar" blockIncrement="2.0" min="-100.0" />
-                        <HBox alignment="CENTER_RIGHT" spacing="20.0">
-                           <children>
-                              <Button id="rollback_btn" mnemonicParsing="false" text="Cancelar" />
-                              <Button id="commit_btn" mnemonicParsing="false" text="Aceptar" />
-                           </children>
-                        </HBox>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets left="20.0" right="20.0" />
-                     </padding>
-                  </VBox>
-               </content>
-          </Tab>
-            <Tab text="Histograma">
-               <content>
-                  <VBox id="histogram_tab" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="caspian-pane">
-                     <children>
-                        <Label text="Visualización actual del histograma">
-                           <font>
-                              <Font size="18.0" />
-                           </font></Label>
-                        <BarChart id="histogram_chart" prefHeight="100.0">
-                          <xAxis>
-                            <CategoryAxis side="BOTTOM" />
-                          </xAxis>
-                          <yAxis>
-                            <NumberAxis side="LEFT" />
-                          </yAxis>
-                        </BarChart>
-                        <HBox alignment="TOP_CENTER" spacing="10.0">
-                           <children>
-                              <Label text="Mínimo" />
-                              <TextField id="min_tf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="66.0" text="0" />
-                              <Label text="Máximo" />
-                              <TextField id="max_tf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="66.0" text="255" />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <RangeSlider id="range_slider" blockIncrement="1.0" highValue="1.0" lowValue="0.0" min="0" />
-                        <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
-                           <children>
-                              <Button id="trim_btn" mnemonicParsing="false" text="Recortar" />
-                           </children>
-                           <padding>
-                              <Insets bottom="20.0" top="20.0" />
-                           </padding>
-                        </HBox>
-                        <Separator prefWidth="200.0">
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </Separator>
-                        <Label text="Mejora automática">
-                           <VBox.margin>
-                              <Insets bottom="10.0" top="10.0" />
-                           </VBox.margin>
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ecualizar el histograma redistribuye los niveles de intensidad, realzando el contraste y detalles de la imagen." textAlignment="CENTER" wrappingWidth="250.0" />
-                        <Button id="equalize_btn" mnemonicParsing="false" text="Equalizar">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab text="Filtros">
-               <content>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <VBox id="filter_tab" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="caspian-pane">
-                           <children>
-                              <Label text="Filtros de color">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button id="grayscale_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Escala de grises" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@GrayScaleMode.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="pseudocolor_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Pseudocolor" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@ColorMode.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="sepia0_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Sepia cálido" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@Sepia0Mode.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="sepia1_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Sepia frío" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@Sepia1Mode.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="negative_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Negativo" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@NegativeMode.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Label text="Filtros lineales">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Button id="laplace_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Laplaciano" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@blueprint_compasses.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="gauss_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Gaussiano" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@blueprint_compasses.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="emboss_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Embossiano" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@blueprint_compasses.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="high_pass_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Highpass" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@blueprint_compasses.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                              <Button id="sharper_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
-                                 <graphic>
-                                    <HBox alignment="CENTER" spacing="20.0">
-                                       <children>
-                                          <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Sharpener" />
-                                          <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@blueprint_compasses.png" />
-                                             </image>
-                                             <HBox.margin>
-                                                <Insets bottom="5.0" top="5.0" />
-                                             </HBox.margin>
-                                          </ImageView>
-                                       </children>
-                                    </HBox>
-                                 </graphic>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets bottom="25.0" left="20.0" right="20.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                     </content>
-                  </ScrollPane>
-               </content>
-            </Tab>
-            <Tab text="Reemplazar pixeles">
-               <content>
-                  <VBox id="override_tab" alignment="CENTER_LEFT" prefWidth="180.0" styleClass="caspian-pane">
-                     <children>
-                        <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Modo arrastrar">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="workmode" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Selecciona la region rectangular que sera reemplazada arrastrando el mouse por encima de la imagen" wrappingWidth="250.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="8.0" top="8.0" />
-                           </VBox.margin>
-                        </Text>
-                        <RadioButton id="advmode_rb" mnemonicParsing="false" styleClass="rb" text="Modo manual" toggleGroup="$workmode">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </RadioButton>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="8.0" top="8.0" />
-                           </VBox.margin>
-                        </Text>
-                        <HBox prefWidth="200.0">
-                           <children>
-                              <TextField id="x0_tf" prefHeight="33.0">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <TextField id="y0_tf" prefHeight="33.0" />
-                           </children>
-                        </HBox>
-                        <HBox prefWidth="200.0">
-                           <children>
-                              <TextField id="x1_tf" prefHeight="33.0">
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                              </TextField>
-                              <TextField id="y1_tf" prefHeight="33.0" />
-                           </children>
-                           <VBox.margin>
-                              <Insets top="11.0" />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox alignment="CENTER" prefWidth="200.0">
-                           <children>
-                              <Button id="replace_btn" mnemonicParsing="false" text="Reemplazar pixeles">
-                                 <HBox.margin>
-                                    <Insets top="11.0" />
-                                 </HBox.margin>
-                              </Button>
-                           </children>
-                        </HBox>
-                     </children>
-                     <padding>
-                        <Insets left="44.0" right="44.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </Tab>
-            <Tab text="Belleza">
-               <content>
-                  <VBox id="beauty_tab" alignment="CENTER_LEFT" prefWidth="180.0" styleClass="caspian-pane">
-                     <children>
-                        <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Ocultar rostro">
-                           <toggleGroup>
-                              <ToggleGroup fx:id="workmode1" />
-                           </toggleGroup>
-                        </RadioButton>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Seleccione con el ratón el punto central del rostro para comenzar la detección" wrappingWidth="250.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="8.0" top="8.0" />
-                           </VBox.margin>
-                        </Text>
-                        <RadioButton id="advmode_rb" mnemonicParsing="false" styleClass="rb" text="Eliminar manchas" toggleGroup="$workmode1">
-                           <VBox.margin>
-                              <Insets top="15.0" />
-                           </VBox.margin>
-                        </RadioButton>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets bottom="8.0" top="8.0" />
-                           </VBox.margin>
-                        </Text>
-                        <Slider id="radio_bar" blockIncrement="2.0" max="33.0" min="9.0" value="11.0" />
-                     </children>
-                     <padding>
-                        <Insets left="44.0" right="44.0" />
-                     </padding>
-                  </VBox>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </right>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" styleClass="caspian-pane" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" spacing="10.0">
+            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" VBox.vgrow="ALWAYS">
+               <content>
+                  <StackPane prefHeight="150.0" prefWidth="200.0">
+                     <children>
+                        <ImageView id="target_vw" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                        <StackPane id="canvas_vb" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+               </content>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" top="20.0" />
+               </VBox.margin>
+            </ScrollPane>
+            <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="77.0" spacing="10.0">
                <children>
+                  <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@zoom_out.png" />
+                     </image>
+                  </ImageView>
+                  <Slider id="zoom_bar" max="200.0" min="20.0" prefWidth="200.0" value="100.0" />
+                  <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@zoom_in.png" />
+                     </image>
+                  </ImageView>
                   <Button id="rotate270_btn" mnemonicParsing="false">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -517,65 +134,460 @@
                   </Button>
                </children>
                <padding>
-                  <Insets bottom="10.0" top="10.0" />
+                  <Insets bottom="10.0" left="33.0" right="33.0" top="10.0" />
                </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <GridPane VBox.vgrow="ALWAYS">
-              <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" style="-fx-border-width: 0;" GridPane.columnSpan="4" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-                     <content>
-                        <StackPane prefHeight="150.0" prefWidth="200.0">
-                           <children>
-                              <ImageView id="target_vw" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                              <StackPane id="canvas_vb" alignment="TOP_LEFT" prefHeight="150.0" prefWidth="200.0">
-                                 <StackPane.margin>
-                                    <Insets />
-                                 </StackPane.margin>
-                              </StackPane>
-                           </children>
-                        </StackPane>
-                     </content>
-                     <GridPane.margin>
-                        <Insets bottom="20.0" left="20.0" right="20.0" />
-                     </GridPane.margin>
-                  </ScrollPane>
-                  <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@zoom_out.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets right="30.0" />
-                     </GridPane.margin>
-                  </ImageView>
-                  <Slider id="zoom_bar" max="200.0" min="20.0" value="100.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                  <ImageView fitHeight="30.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <image>
-                        <Image url="@zoom_in.png" />
-                     </image>
-                     <GridPane.margin>
-                        <Insets left="20.0" />
-                     </GridPane.margin>
-                  </ImageView>
-               </children>
-               <padding>
-                  <Insets bottom="20.0" />
-               </padding>
-            </GridPane>
          </children>
       </VBox>
    </center>
-   <stylesheets>
-      <URL value="@caspian.css" />
-      <URL value="@caspianmod.css" />
-   </stylesheets>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <TabPane id="tab_pane" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="66.0" tabMaxWidth="66.0" tabMinHeight="66.0" tabMinWidth="66.0" VBox.vgrow="ALWAYS">
+               <tabs>
+                  <Tab>
+                     <content>
+                        <VBox id="tone_tab" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0" styleClass="caspian-pane">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Brillo">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Ajuste el valor de incremento" />
+                              <Slider id="brightness_bar" blockIncrement="2.0" min="-100.0" />
+                              <Separator prefWidth="200.0" />
+                              <Label maxWidth="1.7976931348623157E308" text="Contraste">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Ajuste el factor gamma" />
+                              <Slider id="contrastg_bar" blockIncrement="0.25" max="1.85" min="0.15" value="1.0" />
+                              <Label text="Ajuste el factor beta" />
+                              <Slider id="contrastb_bar" blockIncrement="2.0" min="-100.0" />
+                              <HBox alignment="CENTER_RIGHT" spacing="20.0">
+                                 <children>
+                                    <Button id="rollback_btn" mnemonicParsing="false" text="Cancelar" />
+                                    <Button id="commit_btn" mnemonicParsing="false" text="Aceptar" />
+                                 </children>
+                              </HBox>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@screwdriver.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <VBox id="histogram_tab" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="caspian-pane">
+                           <children>
+                              <Label text="Visualización actual del histograma">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <BarChart id="histogram_chart" prefHeight="100.0">
+                                 <xAxis>
+                                    <CategoryAxis side="BOTTOM" />
+                                 </xAxis>
+                                 <yAxis>
+                                    <NumberAxis side="LEFT" />
+                                 </yAxis>
+                              </BarChart>
+                              <HBox alignment="TOP_CENTER" spacing="10.0">
+                                 <children>
+                                    <Label text="Mínimo" />
+                                    <TextField id="min_tf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="66.0" text="0" />
+                                    <Label text="Máximo" />
+                                    <TextField id="max_tf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="66.0" text="255" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </padding>
+                              </HBox>
+                              <RangeSlider id="range_slider" blockIncrement="1.0" highValue="1.0" lowValue="0.0" min="0" />
+                              <HBox alignment="CENTER" prefWidth="200.0" spacing="20.0">
+                                 <children>
+                                    <Button id="trim_btn" mnemonicParsing="false" text="Recortar" />
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" top="20.0" />
+                                 </padding>
+                              </HBox>
+                              <Separator prefWidth="200.0">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </Separator>
+                              <Label text="Mejora automática">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ecualizar el histograma redistribuye los niveles de intensidad, realzando el contraste y detalles de la imagen." textAlignment="CENTER" wrappingWidth="250.0" />
+                              <Button id="equalize_btn" mnemonicParsing="false" text="Equalizar">
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@chart_pie.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="200.0" prefWidth="200.0">
+                           <content>
+                              <VBox id="filter_tab" alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="caspian-pane">
+                                 <children>
+                                    <Label text="Filtros de color">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Button id="grayscale_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Escala de grises" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@GrayScaleMode.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="pseudocolor_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Pseudocolor" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@ColorMode.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="sepia0_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Sepia cálido" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Sepia0Mode.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="sepia1_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Sepia frío" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@Sepia1Mode.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="negative_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Negativo" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@NegativeMode.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Label text="Filtros lineales">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Button id="laplace_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Laplaciano" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@blueprint_compasses.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="gauss_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Gaussiano" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@blueprint_compasses.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="emboss_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Embossiano" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@blueprint_compasses.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="high_pass_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Highpass" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@blueprint_compasses.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                    <Button id="sharper_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false">
+                                       <graphic>
+                                          <HBox alignment="CENTER" spacing="20.0">
+                                             <children>
+                                                <Label maxWidth="-Infinity" prefWidth="100.0" text="Filtro Sharpener" />
+                                                <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                                                   <image>
+                                                      <Image url="@blueprint_compasses.png" />
+                                                   </image>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                                </ImageView>
+                                             </children>
+                                          </HBox>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="25.0" left="20.0" right="20.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </content>
+                        </ScrollPane>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@colors_rgb.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <VBox id="override_tab" alignment="CENTER_LEFT" prefWidth="180.0" styleClass="caspian-pane">
+                           <children>
+                              <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Modo arrastrar">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="workmode" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Selecciona la region rectangular que sera reemplazada arrastrando el mouse por encima de la imagen" wrappingWidth="250.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <RadioButton id="advmode_rb" mnemonicParsing="false" styleClass="rb" text="Modo manual" toggleGroup="$workmode">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <HBox prefWidth="200.0">
+                                 <children>
+                                    <TextField id="x0_tf" prefHeight="33.0">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField id="y0_tf" prefHeight="33.0" />
+                                 </children>
+                              </HBox>
+                              <HBox prefWidth="200.0">
+                                 <children>
+                                    <TextField id="x1_tf" prefHeight="33.0">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </TextField>
+                                    <TextField id="y1_tf" prefHeight="33.0" />
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="11.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <HBox alignment="CENTER" prefWidth="200.0">
+                                 <children>
+                                    <Button id="replace_btn" mnemonicParsing="false" text="Reemplazar pixeles">
+                                       <HBox.margin>
+                                          <Insets top="11.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="44.0" right="44.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@pens.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab>
+                     <content>
+                        <VBox id="beauty_tab" alignment="CENTER_LEFT" prefWidth="180.0" styleClass="caspian-pane">
+                           <children>
+                              <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Ocultar rostro">
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="workmode1" />
+                                 </toggleGroup>
+                              </RadioButton>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Seleccione con el ratón el punto central del rostro para comenzar la detección" wrappingWidth="250.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <RadioButton id="advmode_rb" mnemonicParsing="false" styleClass="rb" text="Eliminar manchas" toggleGroup="$workmode1">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </RadioButton>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="8.0" top="8.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Slider id="radio_bar" blockIncrement="2.0" max="33.0" min="9.0" value="11.0" />
+                           </children>
+                           <padding>
+                              <Insets left="44.0" right="44.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@paintbrush.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+               </tabs>
+            </TabPane>
+         </children>
+      </VBox>
+   </left>
 </BorderPane>
