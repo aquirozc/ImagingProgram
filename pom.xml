@@ -5,11 +5,11 @@
 
     <groupId>com.aquirozc.jimp</groupId>
     <artifactId>Java_Imaging_Program</artifactId>
-    <version>Milestone3_Build2.22</version>
+    <version>Milestone3_Build2.24</version>
     <packaging>jar</packaging>
 
     <properties>
-        <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
+        <!-- <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format> -->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>

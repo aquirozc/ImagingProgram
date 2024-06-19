@@ -2,7 +2,6 @@ package com.aquirozc.jimp.engine;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.IntStream;
-
 import ij.process.ColorProcessor;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
@@ -57,6 +56,32 @@ public class NoiseOp {
         });
 
         return res;
+    }
+
+    public static Image  reduceNoise(Image img){
+
+        int w = (int) img.getWidth(); int h = (int) img.getHeight();
+        WritableImage res = new WritableImage(w,h);
+
+        ColorProcessor input = new ColorProcessor(w, h);
+
+        IntStream.range(0, w).forEach(i -> {
+            IntStream.range(0, h).forEach(j -> {
+                input.set(i, j, img.getPixelReader().getArgb(i, j) & 0xFFFFFF);
+            });
+        });
+  
+        input.blurGaussian(1.5);
+
+        IntStream.range(0, w).forEach(i -> {
+            IntStream.range(0, h).forEach(j -> {
+                int brightness = input.get(i, j);
+                res.getPixelWriter().setArgb(i, j,(255 << 24) | brightness);
+            });
+        });
+
+        return res;
+
     }
     
 }

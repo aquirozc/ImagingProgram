@@ -6,11 +6,13 @@ import com.aquirozc.jimp.data.Region;
 import com.aquirozc.jimp.engine.ConvolveOp;
 import com.aquirozc.jimp.engine.CorrectorOp;
 import com.aquirozc.jimp.engine.FaceDetector;
+import com.aquirozc.jimp.engine.NoiseOp;
 import com.aquirozc.jimp.init.FXApp;
 
 import java.util.stream.IntStream;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.Tab;
@@ -28,6 +30,9 @@ public class BeautyController {
     private TabPane tabPane = (TabPane) parent.lookup("#tab_pane");
     private Slider zoomBar = (Slider) parent.lookup("#zoom_bar");
     private StackPane canvas = (StackPane) parent.lookup("#canvas_vb");
+
+    private Button addNoiseBtn = (Button) parent.lookup("#beauty_tab").lookup("#add_noise_btn");
+    private Button removeNoiseBtn = (Button) parent.lookup("#beauty_tab").lookup("#remove_noise_btn");
 
     private RadioButton dragModeRB = (RadioButton) parent.lookup("#beauty_tab").lookup("#dragmode_rb");
 	private RadioButton advModeRB = (RadioButton) parent.lookup("#beauty_tab").lookup("#advmode_rb");
@@ -53,6 +58,9 @@ public class BeautyController {
         canvas.addEventFilter(MouseEvent.ANY, this::handleMouseSelection);
         canvas.getChildren().add(brush);
 
+        addNoiseBtn.setOnMouseClicked(this::addNoise);
+        removeNoiseBtn.setOnMouseClicked(this::addBlur);
+
         dragModeRB.setSelected(isDragModeEnabled);
         advModeRB.selectedProperty().addListener(this::enableAdvancedMode);
 		dragModeRB.selectedProperty().addListener(this::enableDragMode);
@@ -66,6 +74,26 @@ public class BeautyController {
         brush.setRadius(0);
         brush.setOpacity(0);
 
+    }
+
+    private void addBlur(MouseEvent e){
+
+        if(controller.isOGImageNull()){
+            return;
+        }
+
+        controller.updateCanvas(NoiseOp.reduceNoise(controller.getOGImage()));
+        controller.applyChanges();
+    }
+
+    private void addNoise(MouseEvent e){
+
+        if(controller.isOGImageNull()){
+            return;
+        }
+
+        controller.updateCanvas(NoiseOp.addNoise(controller.getOGImage(), 5));
+        controller.applyChanges();
     }
 
     private void enableAdvancedMode(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {

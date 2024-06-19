@@ -6,12 +6,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 
 public class ToneOPController {
 
     private Parent parent = FXApp.MAIN_EDITOR;
 
+    private TabPane tabPane = (TabPane) parent.lookup("#tab_pane");
     private VBox toneTab = ((VBox)parent.lookup("#tone_tab"));
 
     private Button commitBtn = (Button) toneTab.lookup("#commit_btn");
@@ -30,6 +33,7 @@ public class ToneOPController {
         contrastBSlider.valueProperty().addListener(this::adjustBrightnessAndContrast);
         contrastGSlider.valueProperty().addListener(this::adjustBrightnessAndContrast);
 
+        tabPane.getSelectionModel().selectedItemProperty().addListener(this::onRefresh);
         commitBtn.setOnAction(e -> {controller.applyChanges(); rollbackBtn.fireEvent(e);});
         rollbackBtn.setOnAction(e -> resetSliders());
 
@@ -50,6 +54,20 @@ public class ToneOPController {
         contrastBSlider.setValue(0); 
         contrastGSlider.setValue(1);
 
+    }
+
+    public void onRefresh(ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue){
+
+        if(tabPane.getSelectionModel().getSelectedIndex() != 1){
+            return;
+        }
+
+        if(controller.isOGImageNull()){
+            return;
+        }
+
+        resetSliders();
+        
     }
 
 }

@@ -472,6 +472,9 @@
                                  <toggleGroup>
                                     <ToggleGroup fx:id="workmode" />
                                  </toggleGroup>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
                               </RadioButton>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Selecciona la region rectangular que sera reemplazada arrastrando el mouse por encima de la imagen" wrappingWidth="250.0">
                                  <font>
@@ -485,6 +488,9 @@
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
                               </RadioButton>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
                                  <font>
@@ -542,12 +548,15 @@
                   </Tab>
                   <Tab>
                      <content>
-                        <VBox id="beauty_tab" alignment="CENTER_LEFT" prefWidth="180.0" styleClass="caspian-pane">
+                        <VBox id="beauty_tab" alignment="CENTER_LEFT" prefWidth="180.0" spacing="10.0" styleClass="caspian-pane">
                            <children>
                               <RadioButton id="dragmode_rb" mnemonicParsing="false" styleClass="rb" text="Ocultar rostro">
                                  <toggleGroup>
                                     <ToggleGroup fx:id="workmode1" />
                                  </toggleGroup>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
                               </RadioButton>
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Seleccione con el ratón el punto central del rostro para comenzar la detección" wrappingWidth="250.0">
                                  <font>
@@ -561,8 +570,11 @@
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
                               </RadioButton>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Establece la region que sera remplazada indicando las coordenadas de la esquina noroeste y sureste respectivamente" wrappingWidth="250.0">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Ajuste el tamaño del pincel para que coincida con el tamaño de la mancha " wrappingWidth="250.0">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -571,6 +583,16 @@
                                  </VBox.margin>
                               </Text>
                               <Slider id="radio_bar" blockIncrement="2.0" max="33.0" min="9.0" value="11.0" />
+                              <Label maxWidth="1.7976931348623157E308" text="Ruido">
+                                 <font>
+                                    <Font name="System Bold" size="18.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Button id="add_noise_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Agregar ruido" />
+                              <Button id="remove_noise_btn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Quitar ruido" />
                            </children>
                            <padding>
                               <Insets left="44.0" right="44.0" />
